@@ -50,12 +50,12 @@
     //if n is less than 0
     } else if (n === 0) {
       return [];
-    } else if(n < 0) {
+    } else if (n < 0) {
       //return "n is negative"
       return 'n is negative';
     }
     //return slice of array from index n to end
-    return array.slice(n-1);
+    return array.slice(n - 1);
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -72,7 +72,7 @@
         iterator(collection[index], index, collection);
       }
     // if object
-    } else if (typeof collection === "object"){
+    } else if (typeof collection === 'object') {
       // for in loop
       for (let key in collection) {
         //inputs the value key and the actual object into the iterator function
@@ -100,16 +100,61 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    //create empty array
+    var filteredArray = [];
+    //iterate through collection
+    _.each(collection, function(element){
+      //if the result of running the test function with the element as an input is true
+      if (test(element)) {
+        //push element into empty array
+        filteredArray.push(element)
+      }
+    });
+    //return result array
+    return filteredArray;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    //use filter function with collections as input and a function returning the opposite the result of element in test function
+    return _.filter(collection, function(element) {
+      return !test(element);
+    })
+
   };
 
   // Produce a duplicate-free version of the array.
+  //isSorted is a boolean, true if the array is sorted, false if not
   _.uniq = function(array, isSorted, iterator) {
+    //create empty result array
+    var uniqueArray = [];
+    //if only array argument is defined
+    if (arguments.length === 1) {
+      //iterate through the array
+      _.each(array, function(element){
+        //if element is not in the result array
+        if (_.indexOf(uniqueArray, element) === -1) {
+          //push element into result array
+          uniqueArray.push(element);
+        }
+      });
+    //if all three arguments are present
+    } else if (arguments.length === 3) {
+      let iteratedArray = [];
+      //iterate through the array
+      _.each(array, function(element){
+        //if the result of the iterator function with element as an input is not present in the iteratedArray
+        if (_.indexOf(iteratedArray, iterator(element)) === -1) {
+          //push element into unique array
+          iteratedArray.push(iterator(element));
+          uniqueArray.push(element);
+        }
+      });
+    }
+    //return result array
+    return uniqueArray;
   };
 
 
@@ -118,6 +163,8 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+    // implement _.each results of iterator into array
+
   };
 
   /*
