@@ -103,11 +103,11 @@
     //create empty array
     var filteredArray = [];
     //iterate through collection
-    _.each(collection, function(element){
+    _.each(collection, function(element) {
       //if the result of running the test function with the element as an input is true
       if (test(element)) {
         //push element into empty array
-        filteredArray.push(element)
+        filteredArray.push(element);
       }
     });
     //return result array
@@ -121,7 +121,7 @@
     //use filter function with collections as input and a function returning the opposite the result of element in test function
     return _.filter(collection, function(element) {
       return !test(element);
-    })
+    });
 
   };
 
@@ -133,7 +133,7 @@
     //if only array argument is defined
     if (arguments.length === 1) {
       //iterate through the array
-      _.each(array, function(element){
+      _.each(array, function(element) {
         //if element is not in the result array
         if (_.indexOf(uniqueArray, element) === -1) {
           //push element into result array
@@ -144,7 +144,7 @@
     } else if (arguments.length === 3) {
       let iteratedArray = [];
       //iterate through the array
-      _.each(array, function(element){
+      _.each(array, function(element) {
         //if the result of the iterator function with element as an input is not present in the iteratedArray
         if (_.indexOf(iteratedArray, iterator(element)) === -1) {
           //push element into unique array
